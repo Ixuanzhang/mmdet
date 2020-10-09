@@ -1,0 +1,56 @@
+1、Traceback (most recent call last):
+  File "tools/test.py", line 175, in <module>
+    main()
+  File "tools/test.py", line 171, in main
+    dataset.evaluate(outputs, args.eval, **kwargs)
+  File "/home/stella/zx/mmdetection-master/mmdet/datasets/coco.py", line 362, in evaluate
+    cocoEval = COCOeval(cocoGt, cocoDt, iou_type)
+  File "/home/stella/anaconda3/envs/mmdet/lib/python3.6/site-packages/pycocotools/cocoeval.py", line 76, in __init__
+    self.params = Params(iouType=iouType) # parameters
+  File "/home/stella/anaconda3/envs/mmdet/lib/python3.6/site-packages/pycocotools/cocoeval.py", line 527, in __init__
+    self.setDetParams()
+  File "/home/stella/anaconda3/envs/mmdet/lib/python3.6/site-packages/pycocotools/cocoeval.py", line 507, in setDetParams
+    self.iouThrs = np.linspace(.5, 0.95, np.round((0.95 - .5) / .05) + 1, endpoint=True)
+  File "<__array_function__ internals>", line 6, in linspace
+  File "/home/stella/anaconda3/envs/mmdet/lib/python3.6/site-packages/numpy/core/function_base.py", line 121, in linspace
+    .format(type(num)))
+TypeError: object of type <class 'numpy.float64'> cannot be safely interpreted as an integer.
+
+解决办法：
+home/stella/anaconda3/envs/mmdet/lib/python3.6/site-packages/pycocotools/cocoeval.py  中第507行，self.iouThrs = np.linspace(.5, 0.95, np.round((0.95 - .5) / .05) + 1, endpoint=True) 改为 self.iouThrs = np.linspace(.5, 0.95, int(np.round((0.95 - .5) / .05)) + 1, endpoint=True)    508行也是
+
+2、图片可视化问题
+/home/stella/anaconda3/envs/mmdet/lib/python3.6/site-packages/mmcv/visualization/image.py
+释释掉第73行      
+     if show:
+        imshow(img, win_name, wait_time)
+在调用文件中输入out_file 其其不为空
+
+
+3、 AP  AR 全为0
+[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 89/89, 6.5 task/s, elapsed: 14s, ETA:     0s
+Evaluating bbox...
+Loading and preparing results...
+DONE (t=0.00s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=0.06s).
+Accumulating evaluation results...
+DONE (t=0.02s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.000
+
+因为图片尺寸的问题
+

@@ -1,0 +1,13 @@
+1、训练
+python tools/train.py configs/faster_rcnn_r101_fpn_1x_my.py
+
+2、测试
+python tools/my_test.py configs/faster_rcnn_r101_fpn_1x_my.py /home/stella/zx/mmdetection-master/work_dirs/faster_rcnn_r101_fpn_1x/latest.pth --show
+
+3 验证
+(1)faster rcnn
+python tools/test.py configs/faster_rcnn_r101_fpn_1x_my.py /home/stella/zx/mmdetection-master/work_dirs/faster_rcnn_r101_fpn_1x/latest.pth --eval bbox --show
+
+(2)
+python tools/test.py configs/retinanet_r50_fpn_1x_my.py /home/stella/zx/mmdetection-master/work_dirs/retinanet_r101_fpn_1x/latest.pth --eval bbox --show
+

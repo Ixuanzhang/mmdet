@@ -1,0 +1,58 @@
+{
+ "info": "spytensor created",
+ "license": [
+  "license"
+ ],
+ "images": [
+  {
+   "height": 800,
+   "width": 1200,
+   "id": 0,
+   "file_name": "qingxie_DJI_0068.JPG"
+  }
+ ],
+ "annotations": [
+  {
+   "area": 591.528162511542,
+   "iscrowd": 0,
+   "image_id": 0,
+   "bbox": [
+    1154.8245614035086,
+    19.07894736842105,
+    35.96491228070175,
+    16.44736842105263
+   ],
+   "category_id": 1,
+   "id": 0,
+   "segmentation": []
+  },
+  {
+   "area": 142.3995844875346,
+   "iscrowd": 0,
+   "image_id": 0,
+   "bbox": [
+    1133.1140350877192,
+    0.43859649122807015,
+    13.81578947368421,
+    10.307017543859649
+   ],
+   "category_id": 2,
+   "id": 1,
+   "segmentation": []
+  }
+ ],
+ "categories": [
+  {
+   "id": 1,
+   "name": "excavator"
+  },
+  {
+   "id": 2,
+   "name": "forklift"
+  },
+  {
+   "id": 3,
+   "name": "truck"
+  }
+ ]
+}
